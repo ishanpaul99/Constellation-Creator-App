@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Constellation Creator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <link rel="icon" type="image/png" href="constellation-creator-logo.png">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="navbar">
+      <div class="brand">
+        <img src="constellation-creator-logo.png" alt="logo" width="80px">
+        <span class="brand-name">Constellation Creator</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#creator">Creator</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+      </nav>
+      <a class="nav-cta" href="#creator">Create</a>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <span class="eyebrow">Dream in cosmic ink</span>
+        <h1>Draw Legends Across The Stars.</h1>
+        <p>Create constellations, forge myths, and fill the night sky with your imagination.</p>
+        <a class="hero-button" href="#creator">Create A Constellation</a>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-glow"></div>
+        <div class="hero-card">
+          <div class="hero-card-top">
+            <span>Celestial Dream Map</span>
+            <strong>Star forge unlocked</strong>
+          </div>
+          <div class="hero-card-stars">
+            <span>⭐ 12 stars</span>
+            <span>✨ 3 lines</span>
+            <span>🪄 Myth created</span>
+          </div>
+          <p>Paint your own cosmic story, name it, save it, and watch the sky come alive.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="features-section">
+      <div class="section-header">
+        <span class="section-label">Features</span>
+        <h2>Build your starry mythscape.</h2>
+      </div>
+      <div class="feature-cards">
+        <article class="feature-card">
+          <h3>Interactive Star Placement</h3>
+          <p>Click to place glowing stars, drag them into new positions, and sculpt your own sky.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Myth &amp; Legend Generator</h3>
+          <p>Generate enchanting stories and names to bring each constellation to life.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Personal Constellation Gallery</h3>
+          <p>Save your creations, favorite your myths, and revisit your celestial collection anytime.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="creator-section" id="creator">
+      <div class="section-header">
+        <span class="section-label">Creator</span>
+        <h2>Draw, connect, and enchant the night sky.</h2>
+      </div>
+      <div class="creator-grid">
+        <div class="canvas-panel">
+          <div class="canvas-shell">
+            <canvas id="skyCanvas" class="sky-canvas"></canvas>
+            <div class="canvas-hint">Click to place stars · Drag to move · Use connect mode for lines</div>
+          </div>
+          <div class="sky-controls">
+            <button id="connectModeBtn" class="control-pill">Connect Mode</button>
+            <button id="removeModeBtn" class="control-pill">Remove Mode</button>
+            <button id="randomBtn" class="control-pill accent">🎲 Random Constellation</button>
+            <button id="exportBtn" class="control-pill accent">📸 Export Constellation</button>
+          </div>
+        </div>
+
+        <aside class="panel panel-details">
+          <div class="panel-block">
+            <h3>Constellation Details</h3>
+            <label>
+              Name
+              <div class="input-group">
+                <input id="nameInput" type="text" placeholder="Silver Fox" />
+                <button id="nameGenBtn" class="mini-btn">Generate Name</button>
+              </div>
+            </label>
+            <label>
+              Type
+              <select id="typeInput">
+                <option>Celestial Beast</option>
+                <option>Hero</option>
+                <option>Ancient Symbol</option>
+                <option>Mythical Creature</option>
+                <option>Cosmic Guardian</option>
+                <option>Unknown Entity</option>
+              </select>
+            </label>
+            <label>
+              Rarity
+              <select id="rarityInput">
+                <option>Common</option>
+                <option>Rare</option>
+                <option>Epic</option>
+                <option>Legendary</option>
+                <option>Mythic</option>
+              </select>
+            </label>
+            <div class="button-group">
+              <button id="mythBtn" class="accent">✨ Generate Myth</button>
+              <button id="saveBtn" class="accent">Save Creation</button>
+            </div>
+          </div>
+
+          <div class="panel-block panel-card" id="constellationCard">
+            <span class="card-label">Current Constellation</span>
+            <h3 id="cardName">Unnamed Sky</h3>
+            <p class="card-subtitle" id="cardType">Type: Celestial Beast</p>
+            <div class="card-tags">
+              <span id="cardRarity">Rarity: Common</span>
+              <span id="cardRating">⭐ Simple Pattern</span>
+            </div>
+            <p class="card-myth" id="cardMyth">A soft legend will appear here once you generate a myth for your creation.</p>
+            <div class="card-meta">
+              <div><strong id="cardStars">0</strong><span>Stars</span></div>
+              <div><strong id="cardLines">0</strong><span>Connections</span></div>
+              <div><strong id="cardDate">—</strong><span>Date</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="gallery-section" id="gallery">
+      <div class="section-header">
+        <span class="section-label">Gallery</span>
+        <h2>Your celestial collection.</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-panel">
+          <div class="gallery-header">
+            <h3>Saved Constellations</h3>
+            <p>Newest stars first. Favorite the most magical designs.</p>
+          </div>
+          <div id="galleryCards" class="gallery-cards"></div>
+        </div>
+
+        <aside class="panel panel-stats">
+          <div class="panel-block">
+            <h3>Sky Statistics</h3>
+            <div class="stat-row">
+              <span>Total Constellations</span>
+              <strong id="statTotal">0</strong>
+            </div>
+            <div class="stat-row">
+              <span>Average Stars</span>
+              <strong id="statAverage">0</strong>
+            </div>
+            <div class="stat-row">
+              <span>Most Common Type</span>
+              <strong id="statType">—</strong>
+            </div>
+            <div class="stat-row">
+              <span>Most Common Rarity</span>
+              <strong id="statRarity">—</strong>
+            </div>
+          </div>
+          <div class="panel-block panel-tip">
+            <h4>Night Sky Rating</h4>
+            <p>Rating is based on star count, connection complexity, and rarity to reveal the magic behind each constellation.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="section-header">
+        <span class="section-label">About</span>
+        <h2>More than a drawing tool.</h2>
+      </div>
+      <div class="about-copy">
+        <p>Constellation Creator is a creative celestial design tool that allows users to craft their own constellations, generate legends, and build a personal collection of stories written among the stars.</p>
+        <p>Every creation is a peaceful, mystical sky chart where your imagination becomes a story, and every star feels like a secret waiting to be shared.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Every star has a story. <span id="footerYear"></span></p>
+    </footer>
+
+    <div class="background-nova"></div>
+    <div class="shooting-star star-1"></div>
+    <div class="shooting-star star-2"></div>
+  </div>
+</body>
+</html>
